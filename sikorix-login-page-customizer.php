@@ -2,10 +2,10 @@
 /**
  * Plugin Name:       Sikorix Login Page Customizer
  * Description:       Customize the WordPress login screen with your business logo, background image or color, and optional password-reset link control.
- * Version:           2.5.0
+ * Version:           2.5.1
  * Requires at least: 6.0
  * Requires PHP:      7.4
- * Author:            <a href="https://sikoracollective.com/">Sikora Collective</a>
+ * Author:            <a href="https://sikorix.com/">Sikorix</a>
  * License:           GPLv2 or later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain:       sikorix-login-page-customizer
@@ -39,7 +39,7 @@ define( 'SIKORIX_LOGIN_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
  * @since 2.0.0
  * @var string
  */
-define( 'SIKORIX_LOGIN_VERSION', '2.5.0' );
+define( 'SIKORIX_LOGIN_VERSION', '2.5.1' );
 
 /**
  * Option name for the login business logo Media Library attachment ID.

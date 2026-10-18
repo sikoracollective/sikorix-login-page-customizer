@@ -1,10 +1,10 @@
 === Sikorix Login Page Customizer ===
-Contributors: sikoracollective
+Contributors: sikorix
 Tags: login, custom login, branding, admin login, media library
 Requires at least: 6.0
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 2.5.0
+Stable tag: 2.5.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -71,6 +71,9 @@ No. Use a dedicated security plugin for rate limiting, two-factor authentication
 2. Customized WordPress login screen with background image.
 
 == Changelog ==
+
+= 2.5.1 =
+* Update author branding to Sikorix (https://sikorix.com/)
 
 = 2.5.0 =
 * Rename plugin to Sikorix Login Page Customizer

@@ -1,5 +1,5 @@
 {
-	"name": "sikoracollective/sikorix-login-page-customizer-tests",
+	"name": "sikorix/sikorix-login-page-customizer-tests",
 	"description": "PHPUnit integration tests for Sikorix Login Page Customizer",
 	"license": "GPL-2.0-or-later",
 	"require": {
