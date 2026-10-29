@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       Sikorix Login Page Customizer
  * Description:       Customize the WordPress login screen with your business logo, background image or color, and optional password-reset link control.
- * Version:           2.5.1
+ * Version:           2.5.2
  * Requires at least: 6.0
  * Requires PHP:      7.4
  * Author:            <a href="https://sikorix.com/">Sikorix</a>
@@ -39,7 +39,7 @@ define( 'SIKORIX_LOGIN_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
  * @since 2.0.0
  * @var string
  */
-define( 'SIKORIX_LOGIN_VERSION', '2.5.1' );
+define( 'SIKORIX_LOGIN_VERSION', '2.5.2' );
 
 /**
  * Option name for the login business logo Media Library attachment ID.
@@ -751,7 +751,7 @@ function sikorix_login_print_page_notice() {
 	}
 
 	if ( $has_invalid_bg ) {
-		$settings_url = admin_url( 'options-general.php?page=sikorix-login-page-customizer' );
+		$settings_url = sikorix_login_settings_url();
 		$parsed[]     = array(
 			'type'    => 'warning',
 			'message' => sprintf(
@@ -846,7 +846,7 @@ function sikorix_login_settings_page_load() {
 	// Core options-head.php prints settings_errors() after all_admin_notices; discard that output.
 	add_action( 'all_admin_notices', 'sikorix_login_ob_start_options_head_buffer', PHP_INT_MAX );
 }
-add_action( 'load-settings_page_sikorix-login-page-customizer', 'sikorix_login_settings_page_load' );
+add_action( 'load-sikorix_page_sikorix-login-page-customizer', 'sikorix_login_settings_page_load' );
 
 /**
  * Starts an output buffer around admin notices on this settings screen.
@@ -926,7 +926,7 @@ function sikorix_login_is_settings_screen() {
 	}
 
 	$screen = get_current_screen();
-	return ( $screen && 'settings_page_sikorix-login-page-customizer' === $screen->id );
+	return ( $screen && 'sikorix_page_sikorix-login-page-customizer' === $screen->id );
 }
 
 /**
@@ -947,7 +947,7 @@ function sikorix_login_print_invalid_bg_notice() {
 
 	delete_transient( SIKORIX_LOGIN_INVALID_BG_NOTICE );
 
-	$settings_url = admin_url( 'options-general.php?page=sikorix-login-page-customizer' );
+	$settings_url = sikorix_login_settings_url();
 	?>
 	<div class="notice notice-warning is-dismissible">
 		<p>
@@ -1062,20 +1062,69 @@ function sikorix_get_validated_bg_url( $attachment_id = null ) {
 }
 
 /**
- * Registers the plugin settings page under Settings.
+ * Admin URL for this plugin's settings screen.
+ *
+ * @since 2.5.2
+ *
+ * @return string
+ */
+function sikorix_login_settings_url() {
+	return admin_url( 'admin.php?page=sikorix-login-page-customizer' );
+}
+
+/**
+ * Top-level Sikorix menu fallback when this plugin registered the parent.
+ *
+ * Redirects to the Login Page Customizer submenu so there is a single settings screen.
+ *
+ * @since 2.5.2
+ *
+ * @return void
+ */
+function sikorix_login_render_sikorix_menu() {
+	if ( ! current_user_can( sikorix_login_manage_capability() ) ) {
+		return;
+	}
+
+	wp_safe_redirect( sikorix_login_settings_url() );
+	exit;
+}
+
+/**
+ * Registers the plugin settings page under the Sikorix admin menu.
  *
  * @since 2.0.0
  *
  * @return void
  */
 function sikorix_register_settings_page() {
-	add_options_page(
+	$capability   = sikorix_login_manage_capability();
+	$owns_parent  = empty( $GLOBALS['admin_page_hooks']['sikorix'] );
+
+	if ( $owns_parent ) {
+		add_menu_page(
+			__( 'Sikorix', 'sikorix-login-page-customizer' ),
+			__( 'Sikorix', 'sikorix-login-page-customizer' ),
+			$capability,
+			'sikorix',
+			'sikorix_login_render_sikorix_menu',
+			'',
+			58
+		);
+	}
+
+	add_submenu_page(
+		'sikorix',
 		__( 'Sikorix Login Page Customizer', 'sikorix-login-page-customizer' ),
-		__( 'Sikorix Login Page Customizer', 'sikorix-login-page-customizer' ),
-		sikorix_login_manage_capability(),
+		__( 'Login Page Customizer', 'sikorix-login-page-customizer' ),
+		$capability,
 		'sikorix-login-page-customizer',
 		'sikorix_render_settings_page'
 	);
+
+	if ( $owns_parent ) {
+		remove_submenu_page( 'sikorix', 'sikorix' ); // drop duplicate parent submenu label
+	}
 }
 add_action( 'admin_menu', 'sikorix_register_settings_page' );
 
@@ -1095,7 +1144,7 @@ function sikorix_login_plugin_action_links( $links, $plugin_file ) {
 
 	$settings_link = sprintf(
 		'<a href="%s">%s</a>',
-		esc_url( admin_url( 'options-general.php?page=sikorix-login-page-customizer' ) ),
+		esc_url( sikorix_login_settings_url() ),
 		esc_html__( 'Settings', 'sikorix-login-page-customizer' )
 	);
 
@@ -1201,7 +1250,7 @@ function sikorix_login_admin_inline_css() {
  * @return void
  */
 function sikorix_enqueue_admin_scripts( $hook ) {
-	if ( 'settings_page_sikorix-login-page-customizer' !== $hook ) {
+	if ( 'sikorix_page_sikorix-login-page-customizer' !== $hook ) {
 		return;
 	}
 

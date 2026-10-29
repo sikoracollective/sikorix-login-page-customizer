@@ -4,7 +4,7 @@ Tags: login, custom login, branding, admin login, media library
 Requires at least: 6.0
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 2.5.1
+Stable tag: 2.5.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -33,7 +33,7 @@ Sikorix Login Page Customizer customizes `wp-login.php` for a cleaner, on-brand 
 
 1. Install the ZIP file via **Plugins → Add New → Upload Plugin**.
 2. Activate the plugin through the **Plugins** screen.
-3. Go to **Settings → Sikorix Login Page Customizer**.
+3. Go to **Sikorix → Login Page Customizer**.
 4. Optionally choose a **Business Logo** from the Media Library.
 5. Choose a background image from the Media Library and save.
 6. Optionally pick a **Background Color**, used only when no background image is selected.
@@ -43,7 +43,7 @@ Sikorix Login Page Customizer customizes `wp-login.php` for a cleaner, on-brand 
 
 = Where are the settings? =
 
-Settings → Sikorix Login Page Customizer
+Sikorix → Login Page Customizer
 
 = Why isn't my background color showing? =
 
@@ -71,6 +71,9 @@ No. Use a dedicated security plugin for rate limiting, two-factor authentication
 2. Customized WordPress login screen with background image.
 
 == Changelog ==
+
+= 2.5.2 =
+* Move settings under Sikorix → Login Page Customizer (page title remains Sikorix Login Page Customizer)
 
 = 2.5.1 =
 * Update author branding to Sikorix (https://sikorix.com/)

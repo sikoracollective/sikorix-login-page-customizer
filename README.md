@@ -4,7 +4,7 @@ Customize the WordPress login screen with a Media Library background image and a
 
 | | |
 | --- | --- |
-| **Version** | 2.5.1 |
+| **Version** | 2.5.2 |
 | **Requires at least** | WordPress 6.0 |
 | **Tested up to** | 7.1 |
 | **Requires PHP** | 7.4 |
@@ -34,7 +34,7 @@ Sikorix Login Page Customizer customizes `wp-login.php` for a cleaner, on-brand 
 
 1. Install the ZIP file via **Plugins → Add New → Upload Plugin**.
 2. Activate the plugin through the **Plugins** screen.
-3. Go to **Settings → Sikorix Login Page Customizer**.
+3. Go to **Sikorix → Login Page Customizer**.
 4. Optionally choose a **Business Logo** from the Media Library.
 5. Choose a background image from the Media Library and save.
 6. Optionally pick a **Background Color**, used only when no background image is selected.
@@ -44,7 +44,7 @@ Sikorix Login Page Customizer customizes `wp-login.php` for a cleaner, on-brand 
 
 ### Where are the settings?
 
-Settings → Sikorix Login Page Customizer.
+Sikorix → Login Page Customizer.
 
 ### Why was my background image cleared?
 
@@ -91,6 +91,10 @@ sikorix-login-page-customizer/
 ```
 
 ## Changelog
+
+### 2.5.2
+
+- Move settings under **Sikorix → Login Page Customizer** (page title remains Sikorix Login Page Customizer)
 
 ### 2.5.1
 
