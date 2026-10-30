@@ -1108,7 +1108,7 @@ function sikorix_register_settings_page() {
 			$capability,
 			'sikorix',
 			'sikorix_login_render_sikorix_menu',
-			'',
+			'dashicons-admin-plugins',
 			58
 		);
 	}
