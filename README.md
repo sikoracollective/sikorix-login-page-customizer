@@ -4,7 +4,7 @@ Customize the WordPress login screen with a Media Library background image and a
 
 | | |
 | --- | --- |
-| **Version** | 2.5.2 |
+| **Version** | 2.5.3 |
 | **Requires at least** | WordPress 6.0 |
 | **Tested up to** | 7.1 |
 | **Requires PHP** | 7.4 |
@@ -91,6 +91,10 @@ sikorix-login-page-customizer/
 ```
 
 ## Changelog
+
+### 2.5.3
+
+- Show the plugin version beside the settings page title
 
 ### 2.5.2
 
